@@ -162,6 +162,7 @@ public class BasicBRCodeTest {
         assertThat(mpmResult, equalTo(sampleBrCode2));
     }
 
+    @Test
     public void testDecodeSampleBRCode2() {
         String sampleBrCode2 = "00020126580014br.gov.bcb.pix0136123e4567-e12b-12d1-a456-4266554400005204000053039865802BR5913Fulano de Tal6008BRASILIA62070503***63041D3D";
         final MerchantPresentedMode merchantPresentedMode = DecoderMpm.decode(sampleBrCode2, MerchantPresentedMode.class);
