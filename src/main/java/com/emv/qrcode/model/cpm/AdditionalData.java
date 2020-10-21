@@ -8,9 +8,6 @@ import java.util.Objects;
 import com.emv.qrcode.core.model.BERTLString;
 import com.emv.qrcode.model.cpm.constants.TagTransactionProcessingCodes;
 
-import lombok.Getter;
-
-@Getter
 public abstract class AdditionalData implements Serializable {
 
   private static final long serialVersionUID = -2275311356136693642L;
@@ -172,4 +169,63 @@ public abstract class AdditionalData implements Serializable {
     }
   }
 
+  public BERTLString getApplicationDefinitionFileName() {
+    return applicationDefinitionFileName;
+  }
+
+  public BERTLString getApplicationLabel() {
+    return applicationLabel;
+  }
+
+  public BERTLString getTrack2EquivalentData() {
+    return track2EquivalentData;
+  }
+
+  public BERTLString getApplicationPAN() {
+    return applicationPAN;
+  }
+
+  public BERTLString getCardholderName() {
+    return cardholderName;
+  }
+
+  public BERTLString getLanguagePreference() {
+    return languagePreference;
+  }
+
+  public BERTLString getIssuerURL() {
+    return issuerURL;
+  }
+
+  public BERTLString getApplicationVersionNumber() {
+    return applicationVersionNumber;
+  }
+
+  public BERTLString getTokenRequestorID() {
+    return tokenRequestorID;
+  }
+
+  public BERTLString getPaymentAccountReference() {
+    return paymentAccountReference;
+  }
+
+  public BERTLString getLast4DigitsOfPAN() {
+    return last4DigitsOfPAN;
+  }
+
+  public BERTLString getCryptogramInformationData() {
+    return cryptogramInformationData;
+  }
+
+  public BERTLString getApplicationTransactionCounter() {
+    return applicationTransactionCounter;
+  }
+
+  public BERTLString getApplicationCryptogram() {
+    return applicationCryptogram;
+  }
+
+  public BERTLString getIssuerApplicationData() {
+    return issuerApplicationData;
+  }
 }

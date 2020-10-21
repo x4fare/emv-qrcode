@@ -4,13 +4,13 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 
 import com.emv.qrcode.core.model.BERTLV;
 import com.emv.qrcode.model.cpm.constants.ConsumerPresentedModeFieldCodes;
 
-import lombok.Getter;
+import org.apache.commons.codec.binary.Hex;
 
-@Getter
 public class ApplicationTemplate extends AdditionalData implements BERTLV<Integer, List<ApplicationSpecificTransparentTemplate>> {
 
   private static final long serialVersionUID = 2418153324275018348L;
@@ -24,6 +24,11 @@ public class ApplicationTemplate extends AdditionalData implements BERTLV<Intege
   @Override
   public Integer getTag() {
     return ConsumerPresentedModeFieldCodes.ID_APPLICATION_TEMPLATE;
+  }
+
+  @Override
+  public Integer getLength() {
+    return Optional.ofNullable(getValue()).map(List::toString).map(String::length).orElse(0);
   }
 
   @Override
@@ -54,4 +59,13 @@ public class ApplicationTemplate extends AdditionalData implements BERTLV<Intege
     }
   }
 
+  @Override
+  public String toHex() throws IOException {
+    return Hex.encodeHexString(getBytes(), false);
+  }
+
+  @Override
+  public List<ApplicationSpecificTransparentTemplate> getValue() {
+    return value;
+  }
 }

@@ -6,14 +6,11 @@ import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
 
-import lombok.Getter;
-
 /**
  *
  * ISO 4217 currency codes
  *
  */
-@Getter
 public enum Currency {
 
   AED("AED", "784"), AFN("AFN", "971"), ALL("ALL", "008"), AMD("AMD", "051"), ANG("ANG", "532"), AOA("AOA", "973"), ARS("ARS", "032"), AUD("AUD", "036"), AWG("AWG", "533"), AZN("AZN", "944"), BAM("BAM", "977"), BBD("BBD", "052"),
@@ -61,4 +58,15 @@ public enum Currency {
     return StringUtils.isNoneBlank(code) && mapString.containsKey(code.toUpperCase());
   }
 
+  public static Map<String, Currency> getMapString() {
+    return mapString;
+  }
+
+  public String getCode() {
+    return code;
+  }
+
+  public String getNumber() {
+    return number;
+  }
 }

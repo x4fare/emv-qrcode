@@ -4,18 +4,16 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 
 import com.emv.qrcode.core.model.BERTLV;
 import com.emv.qrcode.model.cpm.constants.ConsumerPresentedModeFieldCodes;
 
-import lombok.Getter;
+import org.apache.commons.codec.binary.Hex;
 
-@Getter
 public class CommonDataTemplate extends AdditionalData implements BERTLV<Integer, List<CommonDataTransparentTemplate>> {
 
   private static final long serialVersionUID = -4642312662946053298L;
-
-  private Integer length;
 
   private final List<CommonDataTransparentTemplate> value = new LinkedList<>();
 
@@ -56,4 +54,18 @@ public class CommonDataTemplate extends AdditionalData implements BERTLV<Integer
     }
   }
 
+  @Override
+  public String toHex() throws IOException {
+    return Hex.encodeHexString(getBytes(), false);
+  }
+
+  @Override
+  public Integer getLength() {
+    return Optional.ofNullable(getValue()).map(List::toString).map(String::length).orElse(0);
+  }
+
+  @Override
+  public List<CommonDataTransparentTemplate> getValue() {
+    return value;
+  }
 }

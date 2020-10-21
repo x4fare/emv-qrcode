@@ -1,15 +1,13 @@
 package com.emv.qrcode.model.mpm;
 
 import java.util.Objects;
+import java.util.Optional;
 
 import org.apache.commons.lang3.StringUtils;
 
 import com.emv.qrcode.core.model.TLV;
 import com.emv.qrcode.model.mpm.constants.MerchantPresentedModeCodes;
 
-import lombok.Setter;
-
-@Setter
 public class MerchantInformationLanguageTemplate implements TLV<String, MerchantInformationLanguage> {
 
   private static final long serialVersionUID = -5894790923682120529L;
@@ -27,8 +25,12 @@ public class MerchantInformationLanguageTemplate implements TLV<String, Merchant
   }
 
   @Override
-  public String toString() {
+  public Integer getLength() {
+    return Optional.ofNullable(getValue()).map(MerchantInformationLanguage::toString).map(String::length).orElse(0);
+  }
 
+  @Override
+  public String toString() {
     if (Objects.isNull(value)) {
       return StringUtils.EMPTY;
     }
@@ -42,4 +44,7 @@ public class MerchantInformationLanguageTemplate implements TLV<String, Merchant
     return String.format("%s%02d%s", getTag(), string.length(), string);
   }
 
+  public void setValue(MerchantInformationLanguage value) {
+    this.value = value;
+  }
 }

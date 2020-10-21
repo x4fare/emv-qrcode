@@ -11,9 +11,6 @@ import org.apache.commons.lang3.StringUtils;
 import com.emv.qrcode.core.model.TagLengthString;
 import com.emv.qrcode.model.mpm.constants.AdditionalDataFieldCodes;
 
-import lombok.Getter;
-
-@Getter
 public class AdditionalDataField implements Serializable {
 
   private static final long serialVersionUID = -6651622119486438559L;
@@ -127,4 +124,47 @@ public class AdditionalDataField implements Serializable {
     return string;
   }
 
+  public TagLengthString getBillNumber() {
+    return billNumber;
+  }
+
+  public TagLengthString getMobileNumber() {
+    return mobileNumber;
+  }
+
+  public TagLengthString getStoreLabel() {
+    return storeLabel;
+  }
+
+  public TagLengthString getLoyaltyNumber() {
+    return loyaltyNumber;
+  }
+
+  public TagLengthString getReferenceLabel() {
+    return referenceLabel;
+  }
+
+  public TagLengthString getCustomerLabel() {
+    return customerLabel;
+  }
+
+  public TagLengthString getTerminalLabel() {
+    return terminalLabel;
+  }
+
+  public TagLengthString getPurposeTransaction() {
+    return purposeTransaction;
+  }
+
+  public TagLengthString getAdditionalConsumerDataRequest() {
+    return additionalConsumerDataRequest;
+  }
+
+  public Map<String, TagLengthString> getrFUforEMVCo() {
+    return rFUforEMVCo;
+  }
+
+  public Map<String, PaymentSystemSpecificTemplate> getPaymentSystemSpecific() {
+    return paymentSystemSpecific;
+  }
 }

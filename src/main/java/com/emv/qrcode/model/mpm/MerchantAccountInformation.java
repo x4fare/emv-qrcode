@@ -1,19 +1,15 @@
 package com.emv.qrcode.model.mpm;
 
+import com.emv.qrcode.core.model.TagLengthString;
+import com.emv.qrcode.model.mpm.constants.MerchantAccountInformationFieldCodes;
+import org.apache.commons.lang3.StringUtils;
+
 import java.io.Serializable;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Optional;
 
-import org.apache.commons.lang3.StringUtils;
-
-import com.emv.qrcode.core.model.TagLengthString;
-import com.emv.qrcode.model.mpm.constants.MerchantAccountInformationFieldCodes;
-
-import lombok.Getter;
-
-@Getter
 public class MerchantAccountInformation implements Serializable {
 
   private static final long serialVersionUID = 3394308551644415429L;
@@ -73,4 +69,11 @@ public class MerchantAccountInformation implements Serializable {
     return string;
   }
 
+  public TagLengthString getGloballyUniqueIdentifier() {
+    return globallyUniqueIdentifier;
+  }
+
+  public Map<String, TagLengthString> getPaymentNetworkSpecific() {
+    return paymentNetworkSpecific;
+  }
 }

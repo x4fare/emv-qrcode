@@ -398,13 +398,13 @@ class AdditionalDataFieldValidator extends AbstractValidator<AdditionalDataField
     /**
      *
      */
-    ruleFor("RFUforEMVCo", AdditionalDataField::getRFUforEMVCo)
+    ruleFor("RFUforEMVCo", AdditionalDataField::getrFUforEMVCo)
       .must(betweenInclusive(Map::size, 1, 39))
         .when(greaterThan(Map::size, 0))
         .withMessage("RFUforEMVCo list size must be between one and thirty-nine")
-        .withAttempedValue(of(AdditionalDataField::getRFUforEMVCo).andThen(Map::size));
+        .withAttempedValue(of(AdditionalDataField::getrFUforEMVCo).andThen(Map::size));
 
-    ruleForEach(of(AdditionalDataField::getRFUforEMVCo).andThen(Map::values))
+    ruleForEach(of(AdditionalDataField::getrFUforEMVCo).andThen(Map::values))
       .whenever(greaterThan(Collection::size, 0))
         .withValidator(new TagLengthStringValidator("AdditionalDataField.RFUforEMVCo", "10", "49", 99));
 

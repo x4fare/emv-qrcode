@@ -1,13 +1,11 @@
 package com.emv.qrcode.model.mpm;
 
 import com.emv.qrcode.core.model.TLV;
-import lombok.Setter;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.Objects;
 import java.util.Optional;
 
-@Setter
 public class MerchantAccountInformationTemplate implements TLV<String, MerchantAccountInformation> {
 
   private static final long serialVersionUID = 1504801865799183162L;
@@ -45,8 +43,12 @@ public class MerchantAccountInformationTemplate implements TLV<String, MerchantA
   }
 
   @Override
-  public String toString() {
+  public Integer getLength() {
+    return Optional.ofNullable(getValue()).map(MerchantAccountInformation::toString).map(String::length).orElse(0);
+  }
 
+  @Override
+  public String toString() {
     if (Objects.isNull(value)) {
       return StringUtils.EMPTY;
     }
@@ -58,5 +60,13 @@ public class MerchantAccountInformationTemplate implements TLV<String, MerchantA
     }
 
     return String.format("%s%02d%s", tag, string.length(), string);
+  }
+
+  public void setTag(String tag) {
+    this.tag = tag;
+  }
+
+  public void setValue(MerchantAccountInformation value) {
+    this.value = value;
   }
 }

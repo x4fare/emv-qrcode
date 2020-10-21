@@ -11,9 +11,6 @@ import org.apache.commons.lang3.StringUtils;
 import com.emv.qrcode.core.model.TagLengthString;
 import com.emv.qrcode.model.mpm.constants.MerchantInformationLanguageFieldCodes;
 
-import lombok.Getter;
-
-@Getter
 public class MerchantInformationLanguage implements Serializable {
 
   private static final long serialVersionUID = 6163271793010568887L;
@@ -68,4 +65,19 @@ public class MerchantInformationLanguage implements Serializable {
     return string;
   }
 
+  public TagLengthString getLanguagePreference() {
+    return languagePreference;
+  }
+
+  public TagLengthString getMerchantName() {
+    return merchantName;
+  }
+
+  public TagLengthString getMerchantCity() {
+    return merchantCity;
+  }
+
+  public Map<String, TagLengthString> getrFUforEMVCo() {
+    return rFUforEMVCo;
+  }
 }

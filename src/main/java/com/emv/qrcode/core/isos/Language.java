@@ -6,14 +6,11 @@ import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
 
-import lombok.Getter;
-
 /**
  *
  * ISO 639-1 language codes
  *
  */
-@Getter
 public enum Language {
 
   AB("AB"), AA("AA"), AF("AF"), AK("AK"), SQ("SQ"), AM("AM"), AR("AR"), AN("AN"), HY("HY"), AS("AS"), AV("AV"), AE("AE"), AY("AY"), AZ("AZ"), BM("BM"), BA("BA"), EU("EU"), BE("BE"), BN("BN"), BH("BH"), BI("BI"), BS("BS"), BR("BR"),
@@ -53,4 +50,11 @@ public enum Language {
     return StringUtils.isNoneBlank(lang) && mapString.containsKey(lang.toUpperCase());
   }
 
+  public static Map<String, Language> getMapString() {
+    return mapString;
+  }
+
+  public String getLang() {
+    return lang;
+  }
 }

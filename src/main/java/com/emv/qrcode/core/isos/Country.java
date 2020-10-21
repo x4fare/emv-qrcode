@@ -6,14 +6,11 @@ import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
 
-import lombok.Getter;
-
 /**
  *
  * ISO 3166 country codes
  *
  */
-@Getter
 public enum Country {
 
   AAX("X", "ALA", "248"), AL("AL", "ALB", "008"), DZ("DZ", "DZA", "012"), AS("AS", "ASM", "016"), AD("AD", "AND", "020"), AO("AO", "AGO", "024"), AI("AI", "AIA", "660"), AQ("AQ", "ATA", "010"), AG("AG", "ATG", "028"),
@@ -78,4 +75,19 @@ public enum Country {
     return StringUtils.isNoneBlank(lang) && mapString.containsKey(lang.toUpperCase());
   }
 
+  public static Map<String, Country> getMapString() {
+    return mapString;
+  }
+
+  public String getAlpha2() {
+    return alpha2;
+  }
+
+  public String getAlpha3() {
+    return alpha3;
+  }
+
+  public String getCode() {
+    return code;
+  }
 }

@@ -1,6 +1,5 @@
 package com.x4fare.emvqrcode;
 
-import br.gov.bcb.brcode.BRCodeConstants;
 import com.emv.qrcode.core.CRC;
 import com.emv.qrcode.core.isos.Country;
 import com.emv.qrcode.core.isos.Currency;
@@ -18,6 +17,11 @@ import static org.junit.Assert.assertThat;
 // https://www.bcb.gov.br/content/estabilidadefinanceira/pix/Regulamento_Pix/II_ManualdePadroesparaIniciacaodoPix-versao1.pdf
 // https://www.bcb.gov.br/content/estabilidadefinanceira/SiteAssets/Manual%20do%20BR%20Code.pdf
 public class BasicBRCodeTest {
+
+    static class BRCodeConstants {
+        static final String PIX_GUI= "br.gov.bcb.pix";
+        static final String BRCODE_GUI= "br.gov.bcb.brcode";
+    }
 
     @Test
     public void testEncodeSampleBRCodeSemCartao() throws IllegalAccessException {

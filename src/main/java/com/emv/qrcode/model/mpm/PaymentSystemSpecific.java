@@ -11,9 +11,6 @@ import org.apache.commons.lang3.StringUtils;
 import com.emv.qrcode.core.model.TagLengthString;
 import com.emv.qrcode.model.mpm.constants.MerchantAccountInformationFieldCodes;
 
-import lombok.Getter;
-
-@Getter
 public class PaymentSystemSpecific implements Serializable {
 
   private static final long serialVersionUID = 6244729218605588349L;
@@ -78,4 +75,11 @@ public class PaymentSystemSpecific implements Serializable {
     return string;
   }
 
+  public TagLengthString getGloballyUniqueIdentifier() {
+    return globallyUniqueIdentifier;
+  }
+
+  public Map<String, TagLengthString> getPaymentSystemSpecific() {
+    return paymentSystemSpecific;
+  }
 }

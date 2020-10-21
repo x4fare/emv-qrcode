@@ -15,9 +15,6 @@ import com.emv.qrcode.core.CRC;
 import com.emv.qrcode.core.model.TagLengthString;
 import com.emv.qrcode.model.mpm.constants.MerchantPresentedModeCodes;
 
-import lombok.Getter;
-
-@Getter
 public class MerchantPresentedMode implements Serializable {
 
   private static final long serialVersionUID = 485352878727448583L;
@@ -215,4 +212,78 @@ public class MerchantPresentedMode implements Serializable {
     
     return sb.toString();
   }
+
+  public TagLengthString getPayloadFormatIndicator() {
+    return payloadFormatIndicator;
+  }
+
+  public TagLengthString getPointOfInitiationMethod() {
+    return pointOfInitiationMethod;
+  }
+
+  public Map<String, MerchantAccountInformationTemplate> getMerchantAccountInformation() {
+    return merchantAccountInformation;
+  }
+
+  public TagLengthString getMerchantCategoryCode() {
+    return merchantCategoryCode;
+  }
+
+  public TagLengthString getTransactionCurrency() {
+    return transactionCurrency;
+  }
+
+  public TagLengthString getTransactionAmount() {
+    return transactionAmount;
+  }
+
+  public TagLengthString getTipOrConvenienceIndicator() {
+    return tipOrConvenienceIndicator;
+  }
+
+  public TagLengthString getValueOfConvenienceFeeFixed() {
+    return valueOfConvenienceFeeFixed;
+  }
+
+  public TagLengthString getValueOfConvenienceFeePercentage() {
+    return valueOfConvenienceFeePercentage;
+  }
+
+  public TagLengthString getCountryCode() {
+    return countryCode;
+  }
+
+  public TagLengthString getMerchantName() {
+    return merchantName;
+  }
+
+  public TagLengthString getMerchantCity() {
+    return merchantCity;
+  }
+
+  public TagLengthString getPostalCode() {
+    return postalCode;
+  }
+
+  public AdditionalDataFieldTemplate getAdditionalDataField() {
+    return additionalDataField;
+  }
+
+  public TagLengthString getCRC() {
+    return cRC;
+  }
+
+  public MerchantInformationLanguageTemplate getMerchantInformationLanguage() {
+    return merchantInformationLanguage;
+  }
+
+  public Map<String, TagLengthString> getRFUforEMVCo() {
+    return rFUforEMVCo;
+  }
+
+  public Map<String, UnreservedTemplate> getUnreserveds() {
+    return unreserveds;
+  }
+
+
 }

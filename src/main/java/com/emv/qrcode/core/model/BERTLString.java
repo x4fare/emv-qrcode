@@ -7,11 +7,6 @@ import java.nio.charset.StandardCharsets;
 import org.apache.commons.codec.binary.Hex;
 import org.apache.commons.lang3.StringUtils;
 
-import lombok.Getter;
-import lombok.Setter;
-
-@Getter
-@Setter
 public class BERTLString implements BERTLV<Integer, String> {
 
   private static final long serialVersionUID = -6482977134879939277L;
@@ -55,4 +50,21 @@ public class BERTLString implements BERTLV<Integer, String> {
     return Hex.encodeHexString(getBytes(), false);
   }
 
+  @Override
+  public Integer getTag() {
+    return tag;
+  }
+
+  public void setTag(Integer tag) {
+    this.tag = tag;
+  }
+
+  @Override
+  public String getValue() {
+    return value;
+  }
+
+  public void setValue(String value) {
+    this.value = value;
+  }
 }

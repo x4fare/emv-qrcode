@@ -136,7 +136,7 @@ class MerchantInformationLanguageValidator extends AbstractValidator<MerchantInf
         .withAttempedValue(of(MerchantInformationLanguage::getMerchantCity).andThen(TagLengthString::getValue))
         .critical();
 
-    ruleForEach(of(MerchantInformationLanguage::getRFUforEMVCo).andThen(Map::values))
+    ruleForEach(of(MerchantInformationLanguage::getrFUforEMVCo).andThen(Map::values))
       .whenever(greaterThan(Collection::size, 0))
         .withValidator(new TagLengthStringValidator("MerchantInformationLanguage.RFUforEMVCo", "03", "99", 99));
 
