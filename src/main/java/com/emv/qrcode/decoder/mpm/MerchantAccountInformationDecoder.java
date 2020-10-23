@@ -3,8 +3,8 @@ package com.emv.qrcode.decoder.mpm;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.function.BiConsumer;
 
+import com.emv.qrcode.BiConsumer;
 import com.emv.qrcode.core.model.TagLengthString;
 import com.emv.qrcode.model.mpm.MerchantAccountInformation;
 import com.emv.qrcode.model.mpm.constants.MerchantAccountInformationFieldCodes;
@@ -15,8 +15,8 @@ public final class MerchantAccountInformationDecoder extends DecoderMpm<Merchant
   private static final Map<String, Entry<Class<?>, BiConsumer<MerchantAccountInformation, ?>>> mapConsumers = new HashMap<>();
 
   static {
-    mapConsumers.put(MerchantAccountInformationFieldCodes.ID_GLOBALLY_UNIQUE_IDENTIFIER, consumerTagLengthValue(String.class, MerchantAccountInformation::setGloballyUniqueIdentifier));
-    mapConsumers.put(MerchantAccountInformationFieldCodes.ID_PAYMENT_NETWORK_SPECIFIC, consumerTagLengthValue(TagLengthString.class, MerchantAccountInformation::addPaymentNetworkSpecific));
+    mapConsumers.put(MerchantAccountInformationFieldCodes.ID_GLOBALLY_UNIQUE_IDENTIFIER, consumerTagLengthValue(String.class, (merchantAccountInformation, s)-> merchantAccountInformation.setGloballyUniqueIdentifier(s)));
+    mapConsumers.put(MerchantAccountInformationFieldCodes.ID_PAYMENT_NETWORK_SPECIFIC, consumerTagLengthValue(TagLengthString.class, (merchantAccountInformation, s)-> merchantAccountInformation.addPaymentNetworkSpecific(s)));
   }
 
   public MerchantAccountInformationDecoder(final String source) {
@@ -28,7 +28,9 @@ public final class MerchantAccountInformationDecoder extends DecoderMpm<Merchant
   protected MerchantAccountInformation decode() {
     final MerchantAccountInformation result = new MerchantAccountInformation();
 
-    iterator.forEachRemaining(value -> {
+    while (iterator.hasNext()) {
+      String value = iterator.next();
+
       final String tag = derivateId(value.substring(0, DecodeMpmIterator.ID_WORD_COUNT));
 
       final Entry<Class<?>, BiConsumer<MerchantAccountInformation, ?>> entry = mapConsumers.get(tag);
@@ -38,7 +40,7 @@ public final class MerchantAccountInformationDecoder extends DecoderMpm<Merchant
       final BiConsumer consumer = entry.getValue();
 
       consumer.accept(result, DecoderMpm.decode(value, clazz));
-    });
+    }
 
     return result;
   }

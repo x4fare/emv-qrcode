@@ -3,8 +3,8 @@ package com.emv.qrcode.decoder.mpm;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.function.BiConsumer;
 
+import com.emv.qrcode.BiConsumer;
 import com.emv.qrcode.core.model.TagLengthString;
 import com.emv.qrcode.model.mpm.MerchantInformationLanguage;
 import com.emv.qrcode.model.mpm.constants.MerchantInformationLanguageFieldCodes;
@@ -15,10 +15,10 @@ public final class MerchantInformationLanguageDecoder extends DecoderMpm<Merchan
   private static final Map<String, Entry<Class<?>, BiConsumer<MerchantInformationLanguage, ?>>> mapConsumers = new HashMap<>();
 
   static {
-    mapConsumers.put(MerchantInformationLanguageFieldCodes.ID_LANGUAGE_PREFERENCE, consumerTagLengthValue(String.class, MerchantInformationLanguage::setLanguagePreference));
-    mapConsumers.put(MerchantInformationLanguageFieldCodes.ID_MERCHANT_NAME, consumerTagLengthValue(String.class, MerchantInformationLanguage::setMerchantName));
-    mapConsumers.put(MerchantInformationLanguageFieldCodes.ID_MERCHANT_CITY, consumerTagLengthValue(String.class, MerchantInformationLanguage::setMerchantCity));
-    mapConsumers.put(MerchantInformationLanguageFieldCodes.ID_RFU_FOR_EMVCO, consumerTagLengthValue(TagLengthString.class, MerchantInformationLanguage::addRFUforEMVCo));
+    mapConsumers.put(MerchantInformationLanguageFieldCodes.ID_LANGUAGE_PREFERENCE, consumerTagLengthValue(String.class, (merchantInformationLanguage, s)-> merchantInformationLanguage.setLanguagePreference(s)));
+    mapConsumers.put(MerchantInformationLanguageFieldCodes.ID_MERCHANT_NAME, consumerTagLengthValue(String.class, (merchantInformationLanguage, s)-> merchantInformationLanguage.setMerchantName(s)));
+    mapConsumers.put(MerchantInformationLanguageFieldCodes.ID_MERCHANT_CITY, consumerTagLengthValue(String.class, (merchantInformationLanguage, s)-> merchantInformationLanguage.setMerchantCity(s)));
+    mapConsumers.put(MerchantInformationLanguageFieldCodes.ID_RFU_FOR_EMVCO, consumerTagLengthValue(TagLengthString.class, (merchantInformationLanguage, s)-> merchantInformationLanguage.addRFUforEMVCo(s)));
   }
 
   public MerchantInformationLanguageDecoder(final String source) {
@@ -30,7 +30,9 @@ public final class MerchantInformationLanguageDecoder extends DecoderMpm<Merchan
   protected MerchantInformationLanguage decode() {
     final MerchantInformationLanguage result = new MerchantInformationLanguage();
 
-    iterator.forEachRemaining(value -> {
+    while (iterator.hasNext()) {
+      String value = iterator.next();
+
       final String tag = derivateId(value.substring(0, DecodeMpmIterator.ID_WORD_COUNT));
 
       final Entry<Class<?>, BiConsumer<MerchantInformationLanguage, ?>> entry = mapConsumers.get(tag);
@@ -40,7 +42,7 @@ public final class MerchantInformationLanguageDecoder extends DecoderMpm<Merchan
       final BiConsumer consumer = entry.getValue();
 
       consumer.accept(result, DecoderMpm.decode(value, clazz));
-    });
+    }
 
     return result;
   }

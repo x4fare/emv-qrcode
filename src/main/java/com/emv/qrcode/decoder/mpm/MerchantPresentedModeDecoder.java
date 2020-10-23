@@ -3,8 +3,8 @@ package com.emv.qrcode.decoder.mpm;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.function.BiConsumer;
 
+import com.emv.qrcode.BiConsumer;
 import com.emv.qrcode.core.model.TagLengthString;
 import com.emv.qrcode.model.mpm.AdditionalDataFieldTemplate;
 import com.emv.qrcode.model.mpm.MerchantAccountInformationTemplate;
@@ -19,25 +19,25 @@ public final class MerchantPresentedModeDecoder extends DecoderMpm<MerchantPrese
   private static final Map<String, Entry<Class<?>, BiConsumer<MerchantPresentedMode, ?>>> mapConsumers = new HashMap<>();
 
   static {
-    mapConsumers.put(MerchantPresentedModeCodes.ID_PAYLOAD_FORMAT_INDICATOR, consumerTagLengthValue(String.class, MerchantPresentedMode::setPayloadFormatIndicator));
-    mapConsumers.put(MerchantPresentedModeCodes.ID_POINT_OF_INITIATION_METHOD, consumerTagLengthValue(String.class, MerchantPresentedMode::setPointOfInitiationMethod));
-    mapConsumers.put(MerchantPresentedModeCodes.ID_MERCHANT_CATEGORY_CODE, consumerTagLengthValue(String.class, MerchantPresentedMode::setMerchantCategoryCode));
-    mapConsumers.put(MerchantPresentedModeCodes.ID_TRANSACTION_CURRENCY, consumerTagLengthValue(String.class, MerchantPresentedMode::setTransactionCurrency));
-    mapConsumers.put(MerchantPresentedModeCodes.ID_TRANSACTION_AMOUNT, consumerTagLengthValue(String.class, MerchantPresentedMode::setTransactionAmount));
-    mapConsumers.put(MerchantPresentedModeCodes.ID_TIP_OR_CONVENIENCE_INDICATOR, consumerTagLengthValue(String.class, MerchantPresentedMode::setTipOrConvenienceIndicator));
-    mapConsumers.put(MerchantPresentedModeCodes.ID_VALUE_OF_CONVENIENCE_FEE_FIXED, consumerTagLengthValue(String.class, MerchantPresentedMode::setValueOfConvenienceFeeFixed));
-    mapConsumers.put(MerchantPresentedModeCodes.ID_VALUE_OF_CONVENIENCE_FEE_PERCENTAGE, consumerTagLengthValue(String.class, MerchantPresentedMode::setValueOfConvenienceFeePercentage));
-    mapConsumers.put(MerchantPresentedModeCodes.ID_COUNTRY_CODE, consumerTagLengthValue(String.class, MerchantPresentedMode::setCountryCode));
-    mapConsumers.put(MerchantPresentedModeCodes.ID_MERCHANT_NAME, consumerTagLengthValue(String.class, MerchantPresentedMode::setMerchantName));
-    mapConsumers.put(MerchantPresentedModeCodes.ID_MERCHANT_CITY, consumerTagLengthValue(String.class, MerchantPresentedMode::setMerchantCity));
-    mapConsumers.put(MerchantPresentedModeCodes.ID_POSTAL_CODE, consumerTagLengthValue(String.class, MerchantPresentedMode::setPostalCode));
-    mapConsumers.put(MerchantPresentedModeCodes.ID_CRC, consumerTagLengthValue(String.class, MerchantPresentedMode::setCRC));
-    mapConsumers.put(MerchantPresentedModeCodes.ID_ADDITIONAL_DATA_FIELD_TEMPLATE, consumerTagLengthValue(AdditionalDataFieldTemplate.class, MerchantPresentedMode::setAdditionalDataField));
-    mapConsumers.put(MerchantPresentedModeCodes.ID_MERCHANT_INFORMATION_LANGUAGE_TEMPLATE, consumerTagLengthValue(MerchantInformationLanguageTemplate.class, MerchantPresentedMode::setMerchantInformationLanguage));
-    mapConsumers.put(MerchantPresentedModeCodes.ID_MERCHANT_ACCOUNT_INFORMATION, consumerTagLengthValue(MerchantAccountInformationTemplate.class, MerchantPresentedMode::addMerchantAccountInformation));
-    mapConsumers.put(MerchantPresentedModeCodes.ID_RFU_FOR_EMVCO, consumerTagLengthValue(TagLengthString.class, MerchantPresentedMode::addRFUforEMVCo));
-    mapConsumers.put(MerchantPresentedModeCodes.ID_UNRESERVED_TEMPLATES, consumerTagLengthValue(UnreservedTemplate.class, MerchantPresentedMode::addUnreserved));
-    mapConsumers.put(MerchantPresentedModeCodes.ID_CRC, consumerTagLengthValue(String.class, MerchantPresentedMode::setCRC));
+    mapConsumers.put(MerchantPresentedModeCodes.ID_PAYLOAD_FORMAT_INDICATOR, consumerTagLengthValue(String.class, (merchantPresentedMode, s)-> merchantPresentedMode.setPayloadFormatIndicator(s)));
+    mapConsumers.put(MerchantPresentedModeCodes.ID_POINT_OF_INITIATION_METHOD, consumerTagLengthValue(String.class, (merchantPresentedMode, s)-> merchantPresentedMode.setPointOfInitiationMethod(s)));
+    mapConsumers.put(MerchantPresentedModeCodes.ID_MERCHANT_CATEGORY_CODE, consumerTagLengthValue(String.class, (merchantPresentedMode, s)-> merchantPresentedMode.setMerchantCategoryCode(s)));
+    mapConsumers.put(MerchantPresentedModeCodes.ID_TRANSACTION_CURRENCY, consumerTagLengthValue(String.class, (merchantPresentedMode, s)-> merchantPresentedMode.setTransactionCurrency(s)));
+    mapConsumers.put(MerchantPresentedModeCodes.ID_TRANSACTION_AMOUNT, consumerTagLengthValue(String.class, (merchantPresentedMode, s)-> merchantPresentedMode.setTransactionAmount(s)));
+    mapConsumers.put(MerchantPresentedModeCodes.ID_TIP_OR_CONVENIENCE_INDICATOR, consumerTagLengthValue(String.class, (merchantPresentedMode, s)-> merchantPresentedMode.setTipOrConvenienceIndicator(s)));
+    mapConsumers.put(MerchantPresentedModeCodes.ID_VALUE_OF_CONVENIENCE_FEE_FIXED, consumerTagLengthValue(String.class, (merchantPresentedMode, s)-> merchantPresentedMode.setValueOfConvenienceFeeFixed(s)));
+    mapConsumers.put(MerchantPresentedModeCodes.ID_VALUE_OF_CONVENIENCE_FEE_PERCENTAGE, consumerTagLengthValue(String.class, (merchantPresentedMode, s)-> merchantPresentedMode.setValueOfConvenienceFeePercentage(s)));
+    mapConsumers.put(MerchantPresentedModeCodes.ID_COUNTRY_CODE, consumerTagLengthValue(String.class, (merchantPresentedMode, s)-> merchantPresentedMode.setCountryCode(s)));
+    mapConsumers.put(MerchantPresentedModeCodes.ID_MERCHANT_NAME, consumerTagLengthValue(String.class, (merchantPresentedMode, s)-> merchantPresentedMode.setMerchantName(s)));
+    mapConsumers.put(MerchantPresentedModeCodes.ID_MERCHANT_CITY, consumerTagLengthValue(String.class, (merchantPresentedMode, s)-> merchantPresentedMode.setMerchantCity(s)));
+    mapConsumers.put(MerchantPresentedModeCodes.ID_POSTAL_CODE, consumerTagLengthValue(String.class, (merchantPresentedMode, s)-> merchantPresentedMode.setPostalCode(s)));
+    mapConsumers.put(MerchantPresentedModeCodes.ID_CRC, consumerTagLengthValue(String.class, (merchantPresentedMode, s)-> merchantPresentedMode.setCRC(s)));
+    mapConsumers.put(MerchantPresentedModeCodes.ID_ADDITIONAL_DATA_FIELD_TEMPLATE, consumerTagLengthValue(AdditionalDataFieldTemplate.class, (merchantPresentedMode, s)-> merchantPresentedMode.setAdditionalDataField(s)));
+    mapConsumers.put(MerchantPresentedModeCodes.ID_MERCHANT_INFORMATION_LANGUAGE_TEMPLATE, consumerTagLengthValue(MerchantInformationLanguageTemplate.class, (merchantPresentedMode, s)-> merchantPresentedMode.setMerchantInformationLanguage(s)));
+    mapConsumers.put(MerchantPresentedModeCodes.ID_MERCHANT_ACCOUNT_INFORMATION, consumerTagLengthValue(MerchantAccountInformationTemplate.class, (merchantPresentedMode, s)-> merchantPresentedMode.addMerchantAccountInformation(s)));
+    mapConsumers.put(MerchantPresentedModeCodes.ID_RFU_FOR_EMVCO, consumerTagLengthValue(TagLengthString.class, (merchantPresentedMode, s)-> merchantPresentedMode.addRFUforEMVCo(s)));
+    mapConsumers.put(MerchantPresentedModeCodes.ID_UNRESERVED_TEMPLATES, consumerTagLengthValue(UnreservedTemplate.class, (merchantPresentedMode, s)-> merchantPresentedMode.addUnreserved(s)));
+    mapConsumers.put(MerchantPresentedModeCodes.ID_CRC, consumerTagLengthValue(String.class, (merchantPresentedMode, s)-> merchantPresentedMode.setCRC(s)));
   }
 
   public MerchantPresentedModeDecoder(final String source) {
@@ -51,7 +51,9 @@ public final class MerchantPresentedModeDecoder extends DecoderMpm<MerchantPrese
 
     result.setCRC("0000");
 
-    iterator.forEachRemaining(value -> {
+    while (iterator.hasNext()) {
+      String value = iterator.next();
+
       final String tag = derivateId(value.substring(0, DecodeMpmIterator.ID_WORD_COUNT));
 
       final Entry<Class<?>, BiConsumer<MerchantPresentedMode, ?>> entry = mapConsumers.get(tag);
@@ -61,7 +63,7 @@ public final class MerchantPresentedModeDecoder extends DecoderMpm<MerchantPrese
       final BiConsumer consumer = entry.getValue();
 
       consumer.accept(result, DecoderMpm.decode(value, clazz));
-    });
+      }
 
     return result;
   }

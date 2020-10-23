@@ -4,8 +4,8 @@ import java.lang.reflect.Constructor;
 import java.util.AbstractMap.SimpleEntry;
 import java.util.Iterator;
 import java.util.Map.Entry;
-import java.util.function.BiConsumer;
 
+import com.emv.qrcode.BiConsumer;
 import com.emv.qrcode.core.configuration.DecodersCpmMap;
 
 // @formatter:off
